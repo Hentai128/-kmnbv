@@ -1,0 +1,82 @@
+<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#061127"><title>کلاسینو</title>
+<style>
+:root{--bg:#061127;--p:rgba(15,31,64,.8);--line:#42618c66;--blue:#4da3ff;--cyan:#62e8ff;--text:#eef6ff;--muted:#a8bad8}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 20% 0%,#15346b,transparent 42%),radial-gradient(ellipse at 90% 80%,#102d5b,transparent 38%),var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}#particles{position:fixed;inset:0;overflow:hidden;pointer-events:none}.pt{position:absolute;width:3px;height:3px;border-radius:50%;background:#7bdfff;box-shadow:0 0 12px #4da3ff;animation:rise linear infinite}@keyframes rise{to{transform:translateY(-110vh) translateX(40px)}}main{position:relative;max-width:1150px;margin:auto;padding:20px 13px}.top,.roomhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.brand{font-size:34px;font-weight:900}.brand span{color:var(--cyan)}.muted,.small{color:var(--muted);font-size:12px;line-height:1.8}.pill,.panel{background:var(--p);border:1px solid var(--line);backdrop-filter:blur(16px);box-shadow:0 15px 50px #0003}.pill{border-radius:99px;padding:9px 13px}.panel{border-radius:20px;padding:17px;margin:16px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;align-items:end}.field label{display:block;margin-bottom:7px;color:var(--muted);font-size:13px}.field input,.chatform input{width:100%;padding:12px;border-radius:11px;border:1px solid var(--line);background:#07142b;color:var(--text);font:inherit;min-width:0}button{font:inherit;font-weight:bold;border:0;border-radius:11px;padding:12px 15px;cursor:pointer;transition:.18s}button:hover{filter:brightness(1.12);transform:translateY(-1px)}button:disabled{opacity:.5}.primary{background:linear-gradient(135deg,var(--cyan),#6e9dff);color:#061127}.secondary{background:#ffffff0b;border:1px solid var(--line);color:var(--text)}.danger{background:#a72d49;color:white}.status{min-height:22px;margin-top:10px;font-size:13px;color:var(--muted)}.error{color:#ff9bad}.success{color:#62e6b2}.hidden{display:none!important}.layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(270px,.8fr);gap:15px}.videos{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:11px}.tile{position:relative;aspect-ratio:16/10;background:#030916;border:1px solid var(--line);border-radius:15px;overflow:hidden}.tile video{width:100%;height:100%;object-fit:cover}.placeholder{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:9px;color:var(--muted);background:radial-gradient(circle,#142b52,#050b19)}.avatar{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#36c7e7,#496bff);color:#061127;font-weight:bold;font-size:20px}.namebar{position:absolute;bottom:0;right:0;left:0;padding:10px;background:linear-gradient(transparent,#000c);font-size:13px}.selftag{color:var(--cyan);margin-right:5px}.side{display:flex;flex-direction:column;gap:12px}.side .panel{margin:0}.people{display:grid;gap:7px}.person{display:flex;justify-content:space-between;background:#ffffff08;padding:10px;border-radius:10px;font-size:13px}.chatbox{height:220px;overflow:auto;display:flex;flex-direction:column;gap:8px;margin:8px 0}.msg{align-self:flex-start;max-width:95%;background:#1b3766;padding:9px 11px;border-radius:12px;font-size:13px;overflow-wrap:anywhere}.msg.mine{align-self:flex-end;background:#164e66}.msg b{display:block;color:var(--cyan);font-size:11px;margin-bottom:4px}.chatform,.tools{display:flex;gap:7px;flex-wrap:wrap}.chatform input{flex:1}.tools button{flex:1;min-width:120px}.footer{text-align:center;color:#8ca2c7;font-size:11px;margin:20px}@media(max-width:800px){.layout{grid-template-columns:1fr}.panel{padding:13px}}@media(max-width:430px){.videos{grid-template-columns:1fr}.tile{aspect-ratio:4/3}}
+</style></head><body><div id="particles"></div><main>
+<header class="top"><div><div class="brand">کلاس<span>ینو</span></div><div class="muted">کلاس آنلاین · نسخه آزمایشی اتصال</div></div><div class="pill">● <span id="net">آماده اتصال</span></div></header>
+<section class="panel" id="entry"><div class="grid"><div class="field"><label>نام شما</label><input id="name" maxlength="35" placeholder="مثلاً علی"></div><div class="field"><label>کد کلاس برای ورود دانش‌آموز</label><input id="roomInput" dir="ltr" placeholder="کد دبیر را وارد کنید"></div><button class="primary" id="join">ورود به کلاس</button><button class="secondary" id="create">ایجاد کلاس جدید (دبیر)</button></div><div class="status" id="status">برای شروع کلاس جدید، ایجاد کلاس را بزنید. برای ورود، کد دبیر را وارد کنید.</div><p class="small">دوربین و میکروفون در سایت منتشرشده باید با HTTPS استفاده شوند. مجوز دوربین/میکروفون را در هر دو دستگاه تأیید کنید.</p></section>
+<section class="panel hidden" id="classPanel"><div class="roomhead"><div><b>کلاس زنده</b><div class="small">کد کلاس: <span id="roomCode" style="direction:ltr;display:inline-block;color:var(--cyan);font-family:monospace"></span> <button class="secondary" id="copy" style="padding:5px 8px">کپی کد</button></div></div><button class="danger" id="leave">خروج</button></div>
+<div class="layout"><div><div class="videos" id="videos"></div><div class="panel"><b>ابزارها</b><div class="tools" style="margin-top:10px"><button class="secondary" id="mic">🎙️ قطع میکروفون</button><button class="secondary" id="cam">📷 خاموش کردن دوربین</button><button class="secondary" id="screen">🖥️ اشتراک صفحه</button><button class="secondary" id="hand">✋ درخواست نوبت</button></div><div class="status" id="toolStatus"></div></div></div><aside class="side"><div class="panel"><b>شرکت‌کنندگان (<span id="count">0</span>)</b><div class="people" id="people" style="margin-top:10px"></div></div><div class="panel"><b>گفت‌وگوی کلاس</b><div class="chatbox" id="chat"></div><form class="chatform" id="chatForm"><input id="chatInput" maxlength="500" placeholder="پیام بنویسید…"><button class="primary">ارسال</button></form></div></aside></div></section><div class="footer">کلاسینو · WebRTC / PeerJS</div></main>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script><script>
+(()=>{const $=x=>document.getElementById(x),S={peer:null,stream:null,room:'',name:'',host:false,conns:new Map(),calls:new Map(),people:new Map(),streams:new Map(),mic:true,cam:true,screen:null};
+for(let i=0;i<32;i++){let e=document.createElement('i');e.className='pt';e.style.left=Math.random()*100+'%';e.style.top=(60+Math.random()*70)+'%';e.style.animationDuration=(12+Math.random()*20)+'s';e.style.animationDelay=(-Math.random()*25)+'s';$('particles').append(e)}
+const iceServers=[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:stun1.l.google.com:19302'},{urls:'stun:stun2.l.google.com:19302'},{urls:'stun:stun3.l.google.com:19302'},{urls:'stun:stun4.l.google.com:19302'},{urls:'stun:stun.cloudflare.com:3478'}];
+function status(t,c=''){ $('status').textContent=t;$('status').className='status '+c}function net(t){$('net').textContent=t}
+function peerNew(){return new Peer(undefined,{host:'0.peerjs.com',port:443,path:'/',secure:true,debug:1,config:{iceServers,sdpSemantics:'unified-plan'}})}
+function tile(id,name,stream,self=false){let t=document.getElementById('tile-'+id);if(!t){t=document.createElement('div');t.className='tile';t.id='tile-'+id;t.innerHTML='<div class="placeholder"><div class="avatar"></div><span>در انتظار تصویر…</span></div><div class="namebar"></div>';$('videos').append(t)}t.querySelector('.avatar').textContent=(name||'?').slice(0,1);t.querySelector('.namebar').textContent=name+(self?' (شما)':'');let v=t.querySelector('video');if(stream){if(!v){v=document.createElement('video');v.autoplay=true;v.playsInline=true;v.muted=self;t.prepend(v)}v.srcObject=stream;t.querySelector('.placeholder').classList.add('hidden');v.play().catch(()=>{})}else if(v){v.remove();t.querySelector('.placeholder').classList.remove('hidden')}}
+function addPerson(id,name,role='شرکت‌کننده'){S.people.set(id,{name,role});renderPeople()}function renderPeople(){$('people').innerHTML='';for(let [id,p] of S.people){let e=document.createElement('div');e.className='person';let a=document.createElement('span');a.textContent=p.name+(id===S.peer?.id?' (شما)':'');let b=document.createElement('small');b.textContent=p.role;e.append(a,b);$('people').append(e)}$('count').textContent=S.people.size}
+function msg(name,text,mine=false){let e=document.createElement('div');e.className='msg'+(mine?' mine':'');let b=document.createElement('b');b.textContent=name;e.append(b,document.createTextNode(text));$('chat').append(e);$('chat').scrollTop=$('chat').scrollHeight}
+function broadcast(d){
+ let sent=0;
+ for(let c of S.conns.values())if(c.open)try{c.send(d);sent++}catch(e){console.warn('send failed',e)}
+ if(d.type==='chat'&&!sent)status('پیام فقط در این دستگاه نمایش داده شد؛ کانال چت هنوز به طرف مقابل وصل نیست.','error');
+}
+function remove(id){document.getElementById('tile-'+id)?.remove();S.people.delete(id);S.streams.delete(id);try{S.calls.get(id)?.close()}catch(e){}S.calls.delete(id);renderPeople()}
+function onData(c,d){if(!d||typeof d!=='object')return;if(d.type==='hello'){c.n=String(d.name||'کاربر');addPerson(c.peer,c.n);tile(c.peer,c.n,S.streams.get(c.peer));c.send({type:'roster',people:[...S.people].map(([id,p])=>({id,...p}))})}if(d.type==='roster')(d.people||[]).forEach(p=>{if(p.id!==S.peer.id){addPerson(p.id,p.name,p.role);tile(p.id,p.name,S.streams.get(p.id))}});if(d.type==='chat')msg(String(d.name||'کاربر'),String(d.text||''));if(d.type==='hand')msg('اعلان کلاس',(d.name||'کاربر')+' درخواست نوبت دارد ✋');if(d.type==='left')remove(d.id);if(d.type==='name'){addPerson(c.peer,d.name);tile(c.peer,d.name,S.streams.get(c.peer))}}
+function wire(c){const prev=S.conns.get(c.peer);if(prev&&(prev.open||prev._connecting))return;S.conns.set(c.peer,c);c.on('open',()=>{c.send({type:'hello',name:S.name,role:S.host?'دبیر':'شرکت‌کننده',id:S.peer?.id});c.send({type:'roster',people:[...S.people].map(([id,p])=>({id,...p}))})});c.on('data',d=>onData(c,d));c.on('close',()=>{S.conns.delete(c.peer);remove(c.peer)});c.on('error',console.warn)}
+function startMediaCall(id){
+ if(!S.peer||!S.stream||!id||id===S.peer.id)return;
+ const old=S.calls.get(id);
+ if(old&&old.open)return;
+ try{
+  const call=S.peer.call(id,S.stream,{metadata:{name:S.name,role:S.host?'دبیر':'شرکت‌کننده'}});
+  if(!call)return;
+  S.calls.set(id,call);
+  call.on('stream',stream=>{S.streams.set(id,stream);tile(id,S.people.get(id)?.name||call.metadata?.name||'شرکت‌کننده',stream);});
+  call.on('close',()=>{S.streams.delete(id);S.calls.delete(id);tile(id,S.people.get(id)?.name||'شرکت‌کننده',null);});
+  call.on('error',e=>{console.warn('media call error',e);status('چت برقرار است؛ اتصال تصویر/صدا ناموفق بود.','error');});
+ }catch(e){console.warn('media call skipped/failed',e);}
+}
+function connect(id){if(!id||id===S.peer?.id)return;const existing=S.conns.get(id);if(existing&&(existing.open||existing._connecting))return;try{const c=S.peer.connect(id,{reliable:true,serialization:'json',metadata:{name:S.name,role:S.host?'دبیر':'شرکت‌کننده'}});if(c)wire(c)}catch(e){console.warn('data connect failed',e);setTimeout(()=>connect(id),1800)}}
+function setup(){
+ S.peer.on('open',id=>{
+  net('متصل');
+  if(S.host){
+   S.room=id;$('roomCode').textContent=id;$('roomInput').value=id;
+   addPerson(id,S.name,'دبیر');
+   status('کلاس ساخته شد؛ کد را برای دانش‌آموز بفرستید.','success');
+  }else{
+   addPerson(id,S.name,'شما');
+   status('در حال پیوستن به کلاس…','success');
+   connect(S.room);
+   // تماس رسانه فقط وقتی دوربین/میکروفون واقعاً در دسترس است.
+   startMediaCall(S.room);
+  }
+ });
+ S.peer.on('connection',c=>{
+  wire(c);
+  if(S.host&&S.stream){
+   c.on('open',()=>setTimeout(()=>startMediaCall(c.peer),250));
+  }
+ });
+ S.peer.on('call',c=>{
+  const remoteId=c.peer,remoteName=S.people.get(remoteId)?.name||c.metadata?.name||(S.host?'شرکت‌کننده':'دبیر');
+  S.calls.set(remoteId,c);
+  c.on('stream',stream=>{S.streams.set(remoteId,stream);tile(remoteId,S.people.get(remoteId)?.name||remoteName,stream);});
+  c.on('close',()=>{S.streams.delete(remoteId);S.calls.delete(remoteId);tile(remoteId,S.people.get(remoteId)?.name||remoteName,null);});
+  c.on('error',e=>{console.warn('incoming media call',e);status('اتصال تصویر برقرار نشد؛ پیام کلاس ممکن است همچنان فعال باشد.','error');});
+  try{c.answer(S.stream||undefined);}catch(e){console.warn('answer call',e);}
+ });
+ S.peer.on('disconnected',()=>{net('قطع اتصال؛ تلاش مجدد');status('اتصال به سرور هماهنگ‌کننده قطع شد؛ در حال تلاش مجدد…','error');try{S.peer.reconnect();}catch(e){console.warn(e);}});
+ S.peer.on('error',e=>{console.error(e);net('خطای اتصال');status('خطای اتصال ('+(e.type||'نامشخص')+'). سرویس هماهنگی یا شبکه ممکن است در دسترس نباشد.','error');});
+}
+async function start(host){if(!window.Peer){status('کتابخانه اتصال بارگذاری نشد؛ اینترنت را بررسی کنید.','error');return}if(location.protocol!=='https:'&&!['localhost','127.0.0.1'].includes(location.hostname)){status('برای استفاده از دوربین باید سایت با HTTPS باز شود.','error');return}S.name=$('name').value.trim().slice(0,35)||'کاربر';S.host=host;S.room=$('roomInput').value.trim();if(!host&&!S.room){status('کد کلاس دبیر را وارد کنید.','error');return}$('create').disabled=$('join').disabled=true;status('درخواست دسترسی دوربین و میکروفون…');try{if(!navigator.mediaDevices?.getUserMedia)throw Error('دسترسی رسانه در این مرورگر فعال نیست.');S.stream=await navigator.mediaDevices.getUserMedia({video:true,audio:{echoCancellation:true,noiseSuppression:true}})}catch(e){console.warn('media unavailable; joining without local media',e);S.stream=null;status('بدون دوربین/میکروفون وارد می‌شوی؛ پیام‌ها و فهرست افراد همچنان باید کار کنند.','error')}S.peer=peerNew();setup();$('entry').classList.add('hidden');$('classPanel').classList.remove('hidden');tile('local',S.name,S.stream,true);addPerson(S.peer?.id||'local',S.name,host?'دبیر':'شما')}
+function leave(){broadcast({type:'left',id:S.peer?.id});S.stream?.getTracks().forEach(t=>t.stop());S.screen?.getTracks().forEach(t=>t.stop());try{S.peer?.destroy()}catch(e){}location.reload()}
+$('create').onclick=()=>start(true);$('join').onclick=()=>start(false);$('leave').onclick=leave;$('copy').onclick=async()=>{try{await navigator.clipboard.writeText(S.room);$('toolStatus').textContent='کد کلاس کپی شد.'}catch(e){$('toolStatus').textContent='کد را انتخاب و کپی کنید: '+S.room}};
+$('chatForm').onsubmit=e=>{e.preventDefault();let t=$('chatInput').value.trim();if(!t)return;msg(S.name,t,true);broadcast({type:'chat',name:S.name,text:t});$('chatInput').value=''};
+$('mic').onclick=()=>{S.mic=!S.mic;S.stream?.getAudioTracks().forEach(t=>t.enabled=S.mic);$('mic').textContent=S.mic?'🎙️ قطع میکروفون':'🔇 روشن کردن میکروفون'};
+$('cam').onclick=()=>{S.cam=!S.cam;S.stream?.getVideoTracks().forEach(t=>t.enabled=S.cam);$('cam').textContent=S.cam?'📷 خاموش کردن دوربین':'📷 روشن کردن دوربین'};
+$('hand').onclick=()=>{broadcast({type:'hand',name:S.name});msg('اعلان کلاس','درخواست نوبت ارسال شد ✋',true)};
+$('screen').onclick=async()=>{try{if(!navigator.mediaDevices.getDisplayMedia)throw Error('این مرورگر پشتیبانی نمی‌کند');S.screen=await navigator.mediaDevices.getDisplayMedia({video:true});$('toolStatus').textContent='صفحه انتخاب شد؛ پخش تصویر صفحه برای همه شرکت‌کنندگان در این نسخه پیاده‌سازی نشده است.';S.screen.getVideoTracks()[0].onended=()=>{S.screen=null;$('toolStatus').textContent='اشتراک صفحه متوقف شد.'}}catch(e){$('toolStatus').textContent='اشتراک صفحه لغو شد یا پشتیبانی نمی‌شود.'}};
+window.addEventListener('beforeunload',()=>S.stream?.getTracks().forEach(t=>t.stop()));
+})();
+</script></body></html>
