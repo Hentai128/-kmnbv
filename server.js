@@ -1,17 +1,22 @@
-javascript
 const express = require('express');
-const { PeerServer } = require('peer');
+const { ExpressPeerServer } = require('peer');
+const path = require('path');
+const http = require('http');
 
 const app = express();
-app.use(express.static('public'));
+const server = http.createServer(app);
 
-const port = process.env.PORT || 3000;
+// فایل‌های اصلی وب‌سایتت که توی پوشه public هستن رو لود می‌کنه
+app.use(express.static(path.join(__dirname, 'public')));
 
-const server = app.listen(port, '0.0.0.0', () => {
-  console.log(`Server running on port ${port}`);
+// تنظیمات PeerServer
+const peerServer = ExpressPeerServer(server, {
+    path: '/myapp'
 });
 
-PeerServer({
-  server,
-  path: '/myapp'
+app.use(peerServer);
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
