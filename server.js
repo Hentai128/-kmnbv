@@ -1,8 +1,17 @@
-const express = require("express");
-const { ExpressPeerServer } = require("peer");
+javascript
+const express = require('express');
+const { PeerServer } = require('peer');
+
 const app = express();
-const PORT = process.env.PORT || 10000;
-app.get("/", (_req, res) => res.status(200).send("Classino signaling server is running."));
-const server = app.listen(PORT, "0.0.0.0", () => console.log(`Classino PeerServer listening on ${PORT}`));
-const peerServer = ExpressPeerServer(server, { path: "/peerjs", proxied: true, allow_discovery: false });
-app.use("/", peerServer);
+app.use(express.static('public'));
+
+const port = process.env.PORT || 3000;
+
+const server = app.listen(port, '0.0.0.0', () => {
+  console.log(`Server running on port ${port}`);
+});
+
+PeerServer({
+  server,
+  path: '/myapp'
+});
